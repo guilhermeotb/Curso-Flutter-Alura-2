@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:cinetopia/ui/components/buttons.dart';
+import 'package:cinetopia/ui/screens/search_movies.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,11 +12,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Ink(
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: <Color>[
-            Color(0xFF000000),
-            Color(0xFF1D0E44),
-          ],
-          begin: Alignment.topCenter
+          gradient: LinearGradient(
+            colors: <Color>[Color(0xFF000000), Color(0xFF1D0E44)],
+            begin: Alignment.topCenter,
           ),
         ),
         child: Padding(
@@ -33,14 +32,18 @@ class HomePage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 24),
                   child: const Text(
                     "O lugar ideial para buscar,salvar e organizar seus filmes favoritos!",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                    ),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                     textAlign: TextAlign.center,
                   ),
                 ),
-                PrimaryButton(),
+                PrimaryButton(
+                  text: "Quero começar!",
+                  icon: Icons.arrow_forward,
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SearchMovies()),
+                  ),
+                ),
               ],
             ),
           ),

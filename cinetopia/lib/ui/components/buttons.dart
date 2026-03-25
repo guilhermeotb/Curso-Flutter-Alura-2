@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatelessWidget {
-  const PrimaryButton({super.key});
+  final String text;
+  final IconData? icon;
+  final Function onTap;
+  const PrimaryButton({super.key, required this.text, this.icon, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        onTap();
+      },
       child: Ink(
         padding: const EdgeInsets.symmetric(horizontal: 19, vertical: 26),
         decoration: BoxDecoration(
@@ -18,14 +23,14 @@ class PrimaryButton extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(
-              "Quero começar!",
+              text,
               style: TextStyle(
                 color: Color(0xFF1D0E44),
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
               ),
             ),
-            Icon(Icons.arrow_forward, color: Color(0xFF1D0E44)),
+            icon != null ? Icon(icon, color: Color(0xFF1D0E44)) : Container(),
           ],
         ),
       ),
