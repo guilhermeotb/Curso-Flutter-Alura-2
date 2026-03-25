@@ -1,55 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'app/app.dart';
+
+
+
 void main() {
   runApp(const Cinetopia());
 }
 
-class Cinetopia extends StatelessWidget {
-  const Cinetopia({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Cinetopia",
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        useMaterial3: true,
-        colorSchemeSeed: Colors.deepPurple,
-      ),
-      home: HomePage(),
-    );
-  }
-}
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Image.asset("assets/images/logo.png", width: 200),
-            Image.asset("assets/images/splash.png", width: 200),
-            const Text(
-              "O lugar ideial para buscar,salvar e organizar seus filmes favoritos!",
-            ),
-            InkWell(
-              onTap: () {},
-              child: Ink(
-                decoration: BoxDecoration(
-                  color: Color(0xFFB370FF),
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: Row(
-                  children: [Text("Quero Começar"), Icon(Icons.arrow_forward)],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
