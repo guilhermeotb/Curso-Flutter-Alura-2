@@ -9,17 +9,36 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: Ink(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: <Color>[
+            Color(0xFF000000),
+            Color(0xFF1D0E44),
+          ],
+          begin: Alignment.topCenter
+          ),
+        ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 26),
           child: Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Image.asset("assets/images/logo.png", width: 200),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 24),
+                  child: Image.asset("assets/images/logo.png", width: 200),
+                ),
                 Image.asset("assets/images/splash.png", width: 200),
-                const Text(
-                  "O lugar ideial para buscar,salvar e organizar seus filmes favoritos!",
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  child: const Text(
+                    "O lugar ideial para buscar,salvar e organizar seus filmes favoritos!",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 PrimaryButton(),
               ],
