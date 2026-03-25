@@ -21,8 +21,6 @@ class Cinetopia extends StatelessWidget {
   }
 }
 
-
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -30,7 +28,27 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("Hello, World!"),
+        child: Column(
+          children: <Widget>[
+            Image.asset("assets/images/logo.png", width: 200),
+            Image.asset("assets/images/splash.png", width: 200),
+            const Text(
+              "O lugar ideial para buscar,salvar e organizar seus filmes favoritos!",
+            ),
+            InkWell(
+              onTap: () {},
+              child: Ink(
+                decoration: BoxDecoration(
+                  color: Color(0xFFB370FF),
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: Row(
+                  children: [Text("Quero Começar"), Icon(Icons.arrow_forward)],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
