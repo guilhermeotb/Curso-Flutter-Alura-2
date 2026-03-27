@@ -5,11 +5,11 @@ import '../../app/services/search_movies_service.dart';
 
 class SearchMovies extends StatelessWidget {
   SearchMovies({super.key});
-  final SearchMoviesService searchMoviesService = SearchMoviesService();
+  final SearchPopularMoviesService searchPopularMoviesService = SearchPopularMoviesService();
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: searchMoviesService.searchMovies(),
+      future: searchPopularMoviesService.getMovies(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return CustomScrollView(
