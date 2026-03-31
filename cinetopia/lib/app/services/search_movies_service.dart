@@ -19,7 +19,10 @@ class SearchPopularMoviesService implements SearchMoviesService {
       final response  = await http.get(Uri.parse(popularMoviesUrl), headers: requestHeader
       );
       if(response.statusCode == 200){
-        print(response.body);
+        movies.clear();
+        for (dynamic movie in jsonDecode(response.body)['results']) {
+          movies.add(Movie.fromMap(movie));
+        }
       } else { 
         throw Exception(response.body);
          } 
@@ -40,10 +43,14 @@ class SearchForMovie implements SearchMoviesService {
  @override
   Future<List<Movie>> getMovies() async {
     try {
-      final response  = await http.get(Uri.parse(moviePrefixUrl+ query + movieFilterSulfix), headers: requestHeader
+      final String encodedQuery = Uri.encodeQueryComponent(query);
+      final response  = await http.get(Uri.parse(moviePrefixUrl+ encodedQuery + movieFilterSulfix), headers: requestHeader
       );
       if(response.statusCode == 200){
-        print(response.body);
+        movies.clear();
+        for (dynamic movie in jsonDecode(response.body)['results']) {
+          movies.add(Movie.fromMap(movie));
+        }
       } else { 
         throw Exception(response.body);
          } 

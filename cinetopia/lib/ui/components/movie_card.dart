@@ -19,22 +19,28 @@ class MovieCard extends StatelessWidget {
           ),  
           margin: const EdgeInsets.only(right: 16),
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 6),
-              child: Text(
-                movie.title,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 6),
+                child: Text(
+                  movie.title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                ),
               ),
-            ),
-            Text(
-              "Lançamento: ${movie.releaseDate}",
-              style: TextStyle(fontSize: 14, color: Color(0xFFA5A5A5)),
-            ),
-          ],
+              Text(
+                "Lançamento: ${movie.releaseDate}",
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 14, color: Color(0xFFA5A5A5)),
+              ),
+            ],
+          ),
         ),
       ],
     );
