@@ -27,7 +27,7 @@ class _SearchMoviesState extends State<SearchMovies> {
             slivers: <Widget>[
               SliverToBoxAdapter(
                 child: Image.asset(
-                  "assets/images/movie.png",
+                  "assets/images/popular.png",
                   height: 80,
                   width: 80,
                 ),
