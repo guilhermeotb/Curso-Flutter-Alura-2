@@ -1,17 +1,26 @@
 import 'package:cinetopia/app/viewmodels/search_movies_viewmodel.dart';
 import 'package:cinetopia/ui/components/movie_card.dart';
+import 'package:cinetopia/ui/screens/movie_details.dart';
 import 'package:flutter/material.dart';
 
-import '../../app/services/search_movies_service.dart';
 
-class SearchMovies extends StatelessWidget {
-  final SearchMoviesViewModel viewmodel = SearchMoviesViewModel();
+class SearchMovies extends StatefulWidget {
+
   SearchMovies({super.key});
- 
+
+  @override
+  State<SearchMovies> createState() => _SearchMoviesState();
+}
+
+class _SearchMoviesState extends State<SearchMovies> {
+  final SearchMoviesViewModel viewmodel = SearchMoviesViewModel();
+
+  final TextEditingController textController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: viewmodel.getPopularMovies(),
+      future: viewmodel.getMovie(textController.text),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return CustomScrollView(
@@ -37,6 +46,14 @@ class SearchMovies extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 32),
                   child: TextField(
+                    controller: textController,
+                    onEditingComplete: (){
+                    FocusScope.of(context).unfocus();
+                    setState(() {
+                      
+                    });
+
+                    },
                     decoration: InputDecoration(
                       hintText: "Pesquisar",
                       border: OutlineInputBorder(
@@ -47,9 +64,12 @@ class SearchMovies extends StatelessWidget {
                 ),
               ),
               SliverList.builder(
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.only(bottom: 32),
-                  child: MovieCard(movie: viewmodel.moviesList[index]),
+                itemBuilder: (context, index) => InkWell(
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetails(movie: viewmodel.moviesList[index]))),
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 32),
+                    child: MovieCard(movie: viewmodel.moviesList[index]),   
+                  ),
                 ),
                 itemCount: viewmodel.moviesList.length,
               ),
